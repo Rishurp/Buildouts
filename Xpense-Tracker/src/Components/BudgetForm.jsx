@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { addExpense } from "../slices/expenseSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const ExpenseForm = () => {
+const BudgetForm = () => {
+  const expenseData = useSelector((state) => state.expense.value);
   const [formData, setFormData] = useState({
     name: "",
     budget: 0,
@@ -12,9 +14,8 @@ const ExpenseForm = () => {
     entertainment: 0,
   });
 
-  const expenseData = useSelector((state) => state.expense.value);
-
   const dispatch = useDispatch();
+  const navigateTo = useNavigate();
 
   const handleForm = (event) => {
     const { id, value } = event.target;
@@ -24,6 +25,16 @@ const ExpenseForm = () => {
       [id]: value,
     }));
   };
+
+  useEffect(() => {
+    setFormData({
+      name: expenseData.name,
+      budget: expenseData.budget,
+      food: expenseData.food,
+      travel: expenseData.travel,
+      entertainment: expenseData.entertainment,
+    });
+  }, []);
 
   return (
     <div className="bg-white py-4 mt-4 mx-24 flex flex-col items-center h-full">
@@ -103,7 +114,7 @@ const ExpenseForm = () => {
         <button
           onClick={() => {
             dispatch(addExpense(formData));
-            console.log(expenseData);
+            navigateTo("/tracker");
           }}
           className="mt-4 bg-slate-500 px-2 py-1 rounded-md hover:bg-slate-700 text-white"
         >
@@ -114,4 +125,4 @@ const ExpenseForm = () => {
   );
 };
 
-export default ExpenseForm;
+export default BudgetForm;
