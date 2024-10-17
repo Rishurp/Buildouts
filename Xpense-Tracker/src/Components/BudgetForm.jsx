@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { addExpense } from "../slices/expenseSlice";
+import { addBudget } from "../slices/budgetSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const BudgetForm = () => {
-  const expenseData = useSelector((state) => state.expense.value);
+  const expenseData = useSelector((state) => state.budget.value);
   const [formData, setFormData] = useState({
     name: "",
     budget: 0,
@@ -113,7 +113,7 @@ const BudgetForm = () => {
         </div>
         <button
           onClick={() => {
-            dispatch(addExpense(formData));
+            dispatch(addBudget(formData));
             navigateTo("/tracker");
           }}
           className="mt-4 bg-slate-500 px-2 py-1 rounded-md hover:bg-slate-700 text-white"

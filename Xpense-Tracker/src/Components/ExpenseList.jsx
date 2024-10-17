@@ -1,15 +1,16 @@
-import React from 'react';
+import { useSelector } from "react-redux";
 
 const ExpenseList = () => {
-  const expenses = [
-    { id: 1, transaction: "Movie", category: "Entertainment", amount: "Rs 800" },
-    { id: 2, transaction: "Goa Tickets", category: "Travel", amount: "Rs 2500" },
-    { id: 3, transaction: "New Jacket", category: "Others", amount: "Rs 2500" },
-    { id: 4, transaction: "Cricket Bat", category: "Entertainment", amount: "Rs 3000" },
-    { id: 5, transaction: "Saturday Dinner", category: "Food", amount: "Rs 540" },
-    { id: 6, transaction: "Cab To Office", category: "Travel", amount: "Rs 200" },
-    { id: 7, transaction: "Chhole Bhatoore", category: "Food", amount: "Rs 150" },
-  ];
+  const expenseList = useSelector((state) => state.expense.value);
+  // const expenses = [
+  //   { id: 1, transaction: "Movie", category: "Entertainment", amount: "Rs 800" },
+  //   { id: 2, transaction: "Goa Tickets", category: "Travel", amount: "Rs 2500" },
+  //   { id: 3, transaction: "New Jacket", category: "Others", amount: "Rs 2500" },
+  //   { id: 4, transaction: "Cricket Bat", category: "Entertainment", amount: "Rs 3000" },
+  //   { id: 5, transaction: "Saturday Dinner", category: "Food", amount: "Rs 540" },
+  //   { id: 6, transaction: "Cab To Office", category: "Travel", amount: "Rs 200" },
+  //   { id: 7, transaction: "Chhole Bhatoore", category: "Food", amount: "Rs 150" },
+  // ];
 
   const handleDelete = (id) => {
     // Logic for deleting an expense (to be implemented)
@@ -30,10 +31,12 @@ const ExpenseList = () => {
           </tr>
         </thead>
         <tbody>
-          {expenses.map((expense) => (
+          {expenseList.map((expense) => (
             <tr key={expense.id} className="hover:bg-gray-100">
               <td className="border border-gray-300 p-2">{expense.id}</td>
-              <td className="border border-gray-300 p-2">{expense.transaction}</td>
+              <td className="border border-gray-300 p-2">
+                {expense.expenseName}
+              </td>
               <td className="border border-gray-300 p-2">{expense.category}</td>
               <td className="border border-gray-300 p-2">{expense.amount}</td>
               <td className="border border-gray-300 p-2">

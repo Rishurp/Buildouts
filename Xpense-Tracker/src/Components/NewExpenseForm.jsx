@@ -1,36 +1,37 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addExpense } from "../slices/expenseSlice";
+import { useSelector } from "react-redux";
 
 const NewExpenseForm = () => {
-  // State to store form values
   const [formData, setFormData] = useState({
     expenseName: "",
     category: "select",
     amount: 0,
   });
 
-  // Handle change in input fields
+  const data = useSelector((state) => state.expense.value);
+
+  const dispatch = useDispatch();
+
   const handleInputChange = (e) => {
     const { id, value } = e.target;
 
-    // Convert the amount to a number if the field is "amount"
     setFormData((prevState) => ({
       ...prevState,
       [id]: id === "amount" ? parseFloat(value) : value,
     }));
   };
 
-  // Handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent page reload
+    e.preventDefault();
     if (formData.category === "select") {
       alert("Please select a valid category");
       return;
     }
 
-    // Handle form data (e.g., send to API or log)
-    console.log("Form Data Submitted: ", formData);
-    
-    // Optionally reset the form after submission
+    dispatch(addExpense(formData));
+
     setFormData({
       expenseName: "",
       category: "select",
@@ -38,12 +39,16 @@ const NewExpenseForm = () => {
     });
   };
 
+  console.log(data);
+
   return (
     <div className="p-4">
       <h2 className="text-xl font-bold mb-4">New Expense Form</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label htmlFor="expenseName" className="block mb-1">Expense Name: </label>
+          <label htmlFor="expenseName" className="block mb-1">
+            Expense Name:{" "}
+          </label>
           <input
             id="expenseName"
             type="text"
@@ -54,7 +59,9 @@ const NewExpenseForm = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="category" className="block mb-1">Select Category:</label>
+          <label htmlFor="category" className="block mb-1">
+            Select Category:
+          </label>
           <select
             id="category"
             value={formData.category}
@@ -69,7 +76,9 @@ const NewExpenseForm = () => {
         </div>
 
         <div className="mb-4">
-          <label htmlFor="amount" className="block mb-1">Expense Amount:</label>
+          <label htmlFor="amount" className="block mb-1">
+            Expense Amount:
+          </label>
           <input
             type="number"
             id="amount"

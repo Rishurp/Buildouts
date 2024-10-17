@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 
 const ExpenseTable = () => {
-  const expenseData = useSelector((state) => state.expense.value);
+  const expenseData = useSelector((state) => state.budget.value);
 
   const totalExpense = 0;
 

@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ExpenseTable from "./ExpenseTable";
@@ -6,7 +5,7 @@ import NewExpenseForm from "./NewExpenseForm";
 import ExpenseList from "./ExpenseList";
 
 const ExpenseTracker = () => {
-  const expenseData = useSelector((state) => state.expense.value);
+  const expenseData = useSelector((state) => state.budget.value);
   const navigateTo = useNavigate();
 
   console.log(expenseData.name);
@@ -14,7 +13,7 @@ const ExpenseTracker = () => {
     <div className="bg-white py-4 mt-4 mx-24 flex flex-col items-center h-full">
       <div className="flex w-full justify-around border-b pb-8 ">
         <p className="text-xl font-bold ">
-          {expenseData.name}'s Monthly Expenditure
+          {expenseData.name} &#39;s Monthly Expenditure
         </p>
         <button
           onClick={() => navigateTo("/")}
@@ -26,11 +25,11 @@ const ExpenseTracker = () => {
       <div className=" border-b w-full pl-40 py-4">
         <ExpenseTable />
       </div>
-      <div className="border-b  ">
+      <div className="border-b">
         <NewExpenseForm />
       </div>
       <div>
-        <ExpenseList/>
+        <ExpenseList />
       </div>
     </div>
   );
