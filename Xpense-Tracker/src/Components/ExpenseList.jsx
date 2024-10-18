@@ -32,8 +32,8 @@ const ExpenseList = () => {
         </thead>
         <tbody>
           {expenseList.map((expense) => (
-            <tr key={expense.id} className="hover:bg-gray-100">
-              <td className="border border-gray-300 p-2">{expense.id}</td>
+            <tr key={expense.index} className="hover:bg-gray-100">
+              <td className="border border-gray-300 p-2">{expense.index}</td>
               <td className="border border-gray-300 p-2">
                 {expense.expenseName}
               </td>

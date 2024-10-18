@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ExpenseTable from "./ExpenseTable";
 import NewExpenseForm from "./NewExpenseForm";
 import ExpenseList from "./ExpenseList";
+import Filter from "./Filter";
 
 const ExpenseTracker = () => {
   const expenseData = useSelector((state) => state.budget.value);
@@ -27,6 +28,9 @@ const ExpenseTracker = () => {
       </div>
       <div className="border-b">
         <NewExpenseForm />
+      </div>
+      <div>
+        <Filter/>
       </div>
       <div>
         <ExpenseList />

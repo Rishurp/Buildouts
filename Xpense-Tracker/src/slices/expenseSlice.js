@@ -10,7 +10,7 @@ export const expenseSlice = createSlice({
            
             const newExpense = {
                 ...action.payload,
-                index:Math.random()
+                index:1+state.value.length
             }
             state.value.push(newExpense);
         },
