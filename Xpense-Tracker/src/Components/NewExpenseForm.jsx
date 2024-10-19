@@ -72,9 +72,9 @@ const NewExpenseForm = () => {
             <option value="food">Food</option>
             <option value="travel">Travel</option>
             <option value="entertainment">Entertainment</option>
+            <option value="others">Others</option>
           </select>
         </div>
-
         <div className="mb-4">
           <label htmlFor="amount" className="block mb-1">
             Expense Amount:

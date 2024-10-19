@@ -1,20 +1,12 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { deleteExpense } from "../slices/expenseSlice"; // Make sure the path is correct
 
-const ExpenseList = () => {
-  const expenseList = useSelector((state) => state.expense.value);
-  // const expenses = [
-  //   { id: 1, transaction: "Movie", category: "Entertainment", amount: "Rs 800" },
-  //   { id: 2, transaction: "Goa Tickets", category: "Travel", amount: "Rs 2500" },
-  //   { id: 3, transaction: "New Jacket", category: "Others", amount: "Rs 2500" },
-  //   { id: 4, transaction: "Cricket Bat", category: "Entertainment", amount: "Rs 3000" },
-  //   { id: 5, transaction: "Saturday Dinner", category: "Food", amount: "Rs 540" },
-  //   { id: 6, transaction: "Cab To Office", category: "Travel", amount: "Rs 200" },
-  //   { id: 7, transaction: "Chhole Bhatoore", category: "Food", amount: "Rs 150" },
-  // ];
+const ExpenseList = ({ expenseList }) => {
+  const dispatch = useDispatch();
 
   const handleDelete = (id) => {
-    // Logic for deleting an expense (to be implemented)
-    console.log(`Deleting expense with ID: ${id}`);
+    // Dispatch the deleteExpense action
+    dispatch(deleteExpense(id));
   };
 
   return (
@@ -32,7 +24,7 @@ const ExpenseList = () => {
         </thead>
         <tbody>
           {expenseList.map((expense) => (
-            <tr key={expense.index} className="hover:bg-gray-100">
+            <tr key={expense.id} className="hover:bg-gray-100">
               <td className="border border-gray-300 p-2">{expense.index}</td>
               <td className="border border-gray-300 p-2">
                 {expense.expenseName}

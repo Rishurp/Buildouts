@@ -9,16 +9,20 @@ export const budgetSlice = createSlice({
       travel: 0,
       food: 0,
       entertainment: 0,
+      others: 0,
     },
   },
   reducers: {
     addBudget: (state, action) => {
       const { name, budget, travel, entertainment, food } = action.payload;
       state.value.name = name;
-      state.value.budget = budget;
-      state.value.travel = travel;
-      state.value.food = food;
-      state.value.entertainment = entertainment;
+      state.value.budget = Number(budget);
+      state.value.travel = Number(travel);
+      state.value.food = Number(food);
+      state.value.entertainment = Number(entertainment);
+      state.value.others =
+        Number(budget) -
+        (Number(travel) + Number(entertainment) + Number(food));
     },
   },
 });

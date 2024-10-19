@@ -2,12 +2,12 @@ import { useState } from "react";
 
 const Filter = ({ onFilterChange }) => {
   const [selectedFilter, setSelectedFilter] = useState("All");
-
-  const categories = ["All", "Food", "Entertainment", "Travel", "Others"];
+  const categories = ["All", "food", "entertainment", "travel", "others"];
 
   const handleFilterClick = (category) => {
+    console.log("Filter clicked:", category); // Debug line
     setSelectedFilter(category);
-    onFilterChange(category);
+    onFilterChange(category); // Notify parent of the change
   };
 
   return (
